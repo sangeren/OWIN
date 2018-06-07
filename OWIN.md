@@ -1,6 +1,8 @@
 OWIN：为 dotnet 开放的 web 服务接口
 ===================================
 
+原文地址 http://owin.org/html/owin.html
+
 版本 1.0
 
 作者 OWIN 工作组
@@ -11,11 +13,11 @@ OWIN：为 dotnet 开放的 web 服务接口
 
 最后更新时间 20121010
 
-1 目录
-======
+目录
+====
 
-1.Overview
-----------
+1 概述
+======
 
 本文对用于定义 OWIN，OWIN 是 .NET web 服务和 web
 应用程序之间的一个标准接口。OWIN
@@ -146,6 +148,7 @@ Task\>; // 方法完成时返回的任务【译者注：Task
   ---------- -------------------- ------------------------------------------------------------------------------------------------------------------------
   Yes        owin.CallCancelled   A CancellationToken indicating if the request has been canceled/aborted. See \[Request Lifetime\]\[sec-req-lifetime\].
   Yes        owin.Version         A string indicating the OWIN version. See [Versioning](http://owin.org/html/owin.html#7-versioning).
+  Required   Key Name             Value Description
 
 【译者注：以上3小节没有翻译，其它 HTTP
 报文一致，如有不了解，请查阅相关内容】
@@ -226,7 +229,7 @@ Task，并把请求控制交给服务。一旦 AppFunc
 请求完整范围或生命周期受到一些因素的限制，包含客户端、服务和应用程序委托。在最简单的场景中，一个请求生命周期结束是在应用程序委托完成和服务正常的结束请求。任何级别的错误可能导致请求过早的结束，或者可能在内部处理和允许请求继续（执行）。
 
 owin.CallCancelled
-键与取消调用令牌关联，当请求被【】终止时服务使用其作为（终止请求）信号。如果在
+键与取消调用令牌关联，当请求(需要)终止时服务使用其作为（终止请求）信号。如果在
 AppFunc 任务完成前请求出现错误
 
 这个（信号）应当被触发。也应当在提供商决定的任何（时间）点触发。中间件可以使用自己的（令牌）来替换它从而提供额外的粒度或功能，但他们应该把新令牌链到原始令牌上。
